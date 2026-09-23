@@ -2,26 +2,26 @@
 
 const PRODUCTS = [
   // Maní confitado y confitados dulces
-  { n:"Almendra confitada", c:"confitados", e:"🌰" },
+  { n:"Almendra confitada", c:"confitados", e:"🌰", img:"images/productos/almendra-confitada.jpg" },
   { n:"Castaña de cajú confitada", c:"confitados", e:"🌰" },
   { n:"Almendra de color", c:"confitados", e:"🎨" },
-  { n:"Maní sabor arándano", c:"confitados", e:"🔵" },
-  { n:"Maní sabor capuchino", c:"confitados", e:"☕" },
-  { n:"Maní sabor cereza", c:"confitados", e:"🍒" },
-  { n:"Maní sabor chirimoya", c:"confitados", e:"🍈" },
-  { n:"Maní sabor chocolate", c:"confitados", e:"🍫" },
-  { n:"Maní sabor coco", c:"confitados", e:"🥥" },
-  { n:"Maní sabor durazno", c:"confitados", e:"🍑" },
-  { n:"Maní sabor frambuesa", c:"confitados", e:"🍓" },
-  { n:"Maní sabor frutilla", c:"confitados", e:"🍓" },
-  { n:"Maní sabor frutos del bosque", c:"confitados", e:"🍇" },
-  { n:"Maní sabor guinda", c:"confitados", e:"🍒" },
-  { n:"Maní sabor leche condensada", c:"confitados", e:"🥛" },
-  { n:"Maní sabor limón", c:"confitados", e:"🍋" },
-  { n:"Maní sabor mango", c:"confitados", e:"🥭" },
-  { n:"Maní sabor manzana", c:"confitados", e:"🍎" },
-  { n:"Maní sabor maracuyá", c:"confitados", e:"🍈" },
-  { n:"Maní sabor menta", c:"confitados", e:"🌿" },
+  { n:"Maní sabor arándano", c:"confitados", e:"🔵", img:"images/productos/mani-arandano.jpg" },
+  { n:"Maní sabor capuchino", c:"confitados", e:"☕", img:"images/productos/mani-capuchino.jpg" },
+  { n:"Maní sabor cereza", c:"confitados", e:"🍒", img:"images/productos/mani-cereza.jpg" },
+  { n:"Maní sabor chirimoya", c:"confitados", e:"🍈", img:"images/productos/mani-chirimoya.jpg" },
+  { n:"Maní sabor chocolate", c:"confitados", e:"🍫", img:"images/productos/mani-chocolate.jpg" },
+  { n:"Maní sabor coco", c:"confitados", e:"🥥", img:"images/productos/mani-coco.jpg" },
+  { n:"Maní sabor durazno", c:"confitados", e:"🍑", img:"images/productos/mani-durazno.jpg" },
+  { n:"Maní sabor frambuesa", c:"confitados", e:"🍓", img:"images/productos/mani-frambuesa.jpg" },
+  { n:"Maní sabor frutilla", c:"confitados", e:"🍓", img:"images/productos/mani-frutilla.jpg" },
+  { n:"Maní sabor frutos del bosque", c:"confitados", e:"🍇", img:"images/productos/mani-frutos-bosque.jpg" },
+  { n:"Maní sabor guinda", c:"confitados", e:"🍒", img:"images/productos/mani-guinda.jpg" },
+  { n:"Maní sabor leche condensada", c:"confitados", e:"🥛", img:"images/productos/mani-leche-condensada.jpg" },
+  { n:"Maní sabor limón", c:"confitados", e:"🍋", img:"images/productos/mani-limon.jpg" },
+  { n:"Maní sabor mango", c:"confitados", e:"🥭", img:"images/productos/mani-mango.jpg" },
+  { n:"Maní sabor manzana", c:"confitados", e:"🍎", img:"images/productos/mani-manzana.jpg" },
+  { n:"Maní sabor maracuyá", c:"confitados", e:"🍈", img:"images/productos/mani-maracuya.jpg" },
+  { n:"Maní sabor menta", c:"confitados", e:"🌿", img:"images/productos/mani-menta.jpg" },
   { n:"Maní sabor mix", c:"confitados", e:"🎉" },
   { n:"Maní sabor mora", c:"confitados", e:"🟣" },
   { n:"Maní sabor naranja", c:"confitados", e:"🍊" },
@@ -182,14 +182,19 @@ function renderProducts(){
   });
 
   empty.hidden = list.length !== 0;
-  grid.innerHTML = list.map(p => `
-    <article class="p-card">
-      <span class="p-card__emoji">${p.e}</span>
+  grid.innerHTML = list.map(p => {
+    const media = p.img
+      ? `<img class="p-card__img" src="${p.img}" alt="${p.n}" loading="lazy" />`
+      : `<span class="p-card__emoji">${p.e}</span>`;
+    return `
+    <article class="p-card${p.img ? " p-card--photo" : ""}">
+      ${media}
       <span class="p-card__body">
         <span class="p-card__name">${p.n}</span>
         <span class="p-card__cat">${CAT_LABEL[p.c]}</span>
       </span>
-    </article>`).join("");
+    </article>`;
+  }).join("");
 }
 
 filters.addEventListener("click", e => {
