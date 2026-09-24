@@ -80,9 +80,9 @@ a{color:inherit;text-decoration:none}
 
 /* ===== HERO ===== */
 .hero{background:var(--cream)}
-.hero__banner{width:100%;max-height:min(70vh,620px);overflow:hidden;position:relative}
+.hero__banner{width:100%;max-height:min(84vh,780px);overflow:hidden;position:relative}
 .hero__banner img{width:100%;height:100%;object-fit:cover;object-position:center 42%;display:block}
-.hero__banner::after{content:"";position:absolute;inset:auto 0 0 0;height:80px;background:linear-gradient(0deg,var(--cream),transparent);pointer-events:none;z-index:2}
+.hero__banner::after{content:"";position:absolute;inset:auto 0 0 0;height:230px;background:linear-gradient(to top,var(--cream) 0%,rgba(250,246,239,.92) 20%,rgba(250,246,239,.55) 52%,rgba(250,246,239,.22) 78%,rgba(250,246,239,0) 100%);pointer-events:none;z-index:2}
 /* Panel de marca (aparece si la foto no está disponible) */
 .hero__brand{display:none}
 .hero__banner--fallback{max-height:none;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:3.4rem 24px 3.8rem;
@@ -214,7 +214,8 @@ a{color:inherit;text-decoration:none}
   .nav__links a{padding:.7rem 0;border-bottom:1px solid var(--line)}
   .nav__cta{display:none}
   .nav__toggle{display:flex;margin-left:auto}
-  .hero__banner{max-height:46vh}
+  .hero__banner{max-height:56vh}
+  .hero__banner::after{height:150px}
   .promo__inner{text-align:center;justify-content:center}
   .promo__text{min-width:auto}
 }
