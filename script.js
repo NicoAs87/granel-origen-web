@@ -229,6 +229,7 @@ const CATEGORIES = [
 ];
 
 const CAT_LABEL = Object.fromEntries(CATEGORIES.map(c => [c.id, c.label]));
+const CAT_ORDER = Object.fromEntries(CATEGORIES.map((c, i) => [c.id, i]));
 
 const grid    = document.getElementById("productGrid");
 const empty   = document.getElementById("productEmpty");
@@ -258,6 +259,9 @@ function renderProducts(){
     const okSearch = !q || norm(p.n).includes(q);
     return okCat && okSearch;
   });
+
+  // Agrupa por categoría y ordena alfabéticamente dentro de cada una
+  list.sort((a, b) => (CAT_ORDER[a.c] - CAT_ORDER[b.c]) || norm(a.n).localeCompare(norm(b.n), "es"));
 
   empty.hidden = list.length !== 0;
   grid.innerHTML = list.map(p => {
