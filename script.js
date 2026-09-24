@@ -184,6 +184,13 @@ const PRODUCTS = [
   { n:"Gelatina sin sabor", c:"despensa", e:"🍮", img:P+"gelatina-sin-sabor.jpg" },
   { n:"Syrup de coco y chocolate", c:"despensa", e:"🍯", img:P+"syrup-coco-choco.jpg" },
   { n:"Tropical coco", c:"despensa", e:"🥥", img:P+"tropical-coco.jpg" },
+  { n:"Harina tostada", c:"despensa", e:"🌾", img:P+"harina-tostada.jpg" },
+  { n:"Harina integral", c:"despensa", e:"🌾", img:P+"harina-integral.jpg" },
+  { n:"Harina de quínoa", c:"despensa", e:"🌾", img:P+"harina-quinoa.jpg" },
+  { n:"Harina de avena", c:"despensa", e:"🌾", img:P+"harina-avena.jpg" },
+  { n:"Harina de maqui", c:"despensa", e:"🟣", img:P+"harina-maqui.jpg" },
+  { n:"Harina de linaza", c:"despensa", e:"🟤", img:P+"harina-linaza.jpg" },
+  { n:"Harina de coco", c:"despensa", e:"🥥", img:P+"harina-coco.jpg" },
 
   // Condimentos y especias
   { n:"Ajinomoto", c:"condimentos", e:"🧂", img:P+"ajinomoto.jpg" },
