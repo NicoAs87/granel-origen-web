@@ -4,7 +4,7 @@ const P = "images/productos/";
 const PRODUCTS = [
   // Maní confitado y confitados dulces
   { n:"Almendra confitada", c:"confitados", e:"🌰", img:P+"almendra-confitada.jpg" },
-  { n:"Castaña de cajú confitada", c:"confitados", e:"🌰" },
+  { n:"Castaña de cajú confitada", c:"confitados", e:"🌰", img:P+"castana-caju-confitada.jpg" },
   { n:"Almendra de color", c:"confitados", e:"🎨", img:P+"almendra-color.jpg" },
   { n:"Maní sabor arándano", c:"confitados", e:"🔵", img:P+"mani-arandano.jpg" },
   { n:"Maní sabor capuchino", c:"confitados", e:"☕", img:P+"mani-capuchino.jpg" },
