@@ -1,0 +1,55 @@
+<svg viewBox="0 0 260 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Granel &amp; Origen — compra a granel">
+  <defs>
+    <linearGradient id="cara" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#c68d52"/>
+      <stop offset="1" stop-color="#9c6a34"/>
+    </linearGradient>
+    <style>
+      .brown{stroke:#3d2b1e;fill:none;stroke-width:5;stroke-linecap:round;stroke-linejoin:round}
+      .thin{stroke:#3d2b1e;fill:none;stroke-width:3.4;stroke-linecap:round;stroke-linejoin:round}
+      .grain{fill:url(#cara)}
+      .sage{fill:#7d8b64}
+    </style>
+  </defs>
+
+  <!-- Anillo emblema -->
+  <circle cx="130" cy="130" r="120" fill="#faf6ef"/>
+  <circle cx="130" cy="130" r="120" class="thin" stroke-width="3"/>
+  <circle cx="130" cy="130" r="110" class="thin" stroke-width="1.4" stroke-dasharray="2 8"/>
+
+  <!-- Balanza: base -->
+  <path class="brown" d="M104 210 h52"/>
+  <path class="brown" d="M130 210 v-96"/>
+  <path class="brown" d="M112 210 c0 -10 6 -16 18 -16 s18 6 18 16"/>
+
+  <!-- Viga superior -->
+  <path class="brown" d="M62 118 L198 118"/>
+  <circle cx="130" cy="118" r="6" fill="#3d2b1e"/>
+  <path class="thin" d="M130 114 v-8"/>
+
+  <!-- Cadenas -->
+  <path class="thin" d="M62 118 L50 150 M62 118 L74 150"/>
+  <path class="thin" d="M198 118 L186 150 M198 118 L210 150"/>
+
+  <!-- Plato izquierdo: porción pequeña -->
+  <path class="brown" d="M40 150 q22 26 44 0" />
+  <circle class="grain" cx="55" cy="150" r="4.2"/>
+  <circle class="grain" cx="65" cy="152" r="4.2"/>
+
+  <!-- Plato derecho: kilos (más cantidad) -->
+  <path class="brown" d="M176 150 q22 26 44 0" />
+  <circle class="grain" cx="188" cy="149" r="4.6"/>
+  <circle class="grain" cx="198" cy="152" r="4.6"/>
+  <circle class="grain" cx="208" cy="149" r="4.6"/>
+  <circle class="grain" cx="193" cy="143" r="4.6"/>
+  <circle class="grain" cx="203" cy="143" r="4.6"/>
+
+  <!-- Hoja / origen natural -->
+  <path class="sage" d="M130 106 c-9 -2 -16 -9 -16 -20 c11 0 18 8 16 20 Z"/>
+  <path class="sage" d="M130 106 c9 -2 16 -9 16 -20 c-11 0 -18 8 -16 20 Z"/>
+  <path class="thin" stroke="#7d8b64" stroke-width="2" d="M130 108 v-24"/>
+
+  <!-- Wordmark -->
+  <text x="130" y="272" text-anchor="middle" font-family="'Cormorant Garamond', Georgia, serif" font-size="30" font-weight="700" fill="#3d2b1e" letter-spacing="1">Granel &amp; Origen</text>
+  <text x="130" y="291" text-anchor="middle" font-family="Montserrat, Arial, sans-serif" font-size="9.5" font-weight="600" fill="#9c6a34" letter-spacing="3.5">A GRANEL · A TU MEDIDA</text>
+</svg>
