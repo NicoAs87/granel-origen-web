@@ -138,6 +138,75 @@ const PRODUCTS = [
   { n:"Té verde", c:"despensa", e:"🍵", img:P+"te-verde.jpg" },
   { n:"Bicarbonato", c:"despensa", e:"🧂", img:P+"bicarbonato.jpg" },
   { n:"Maicena", c:"despensa", e:"🌽", img:P+"maicena.jpg" },
+
+  // ===== Productos nuevos =====
+  // Frutos secos
+  { n:"Avellana chilena tostada", c:"frutos-secos", e:"🌰", img:P+"avellana-chilena.jpg" },
+  { n:"Maní con piel", c:"frutos-secos", e:"🥜", img:P+"mani-con-piel.jpg" },
+  { n:"Maní sin sal", c:"frutos-secos", e:"🥜", img:P+"mani-sin-sal.jpg" },
+  { n:"Nuez", c:"frutos-secos", e:"🌰", img:P+"nuez.jpg" },
+  { n:"Nuez cuartillo", c:"frutos-secos", e:"🌰", img:P+"nuez-cuartillo.jpg" },
+  { n:"Nuez de Brasil", c:"frutos-secos", e:"🌰", img:P+"nuez-brasil.jpg" },
+  { n:"Pistacho tostado sin sal", c:"frutos-secos", e:"🥜", img:P+"pistacho-tostado.jpg" },
+
+  // Frutas deshidratadas
+  { n:"Cereza deshidratada", c:"frutas", e:"🍒", img:P+"cereza-deshidratada.jpg" },
+  { n:"Naranja deshidratada", c:"frutas", e:"🍊", img:P+"naranja-deshidratada.jpg" },
+  { n:"Pasas morenas", c:"frutas", e:"🍇", img:P+"pasas-morenas.jpg" },
+  { n:"Jengibre en lonja", c:"frutas", e:"🟡", img:P+"jengibre-lonja.jpg" },
+  { n:"Fruta confitada", c:"frutas", e:"🍬", img:P+"fruta-confitada.jpg" },
+
+  // Golosinas y confites
+  { n:"Almendra con chocolate caramelizada", c:"golosinas", e:"🍫", img:P+"almendra-choco-caramelizada.jpg" },
+  { n:"Almendra con chocolate Vizzio", c:"golosinas", e:"🍫", img:P+"almendra-choco-vizzio.jpg" },
+  { n:"Avellana con chocolate", c:"golosinas", e:"🍫", img:P+"avellana-choco.jpg" },
+  { n:"Castaña con chocolate", c:"golosinas", e:"🍫", img:P+"castana-choco.jpg" },
+  { n:"Café con chocolate bitter", c:"golosinas", e:"🍫", img:P+"cafe-choco-bitter.jpg" },
+  { n:"Café con chocolate blanco", c:"golosinas", e:"🍫", img:P+"cafe-choco-blanco.jpg" },
+  { n:"Café con chocolate leche", c:"golosinas", e:"🍫", img:P+"cafe-choco-leche.jpg" },
+  { n:"Café con chocolate mix", c:"golosinas", e:"🍫", img:P+"cafe-choco-mix.jpg" },
+  { n:"Naranja con chocolate", c:"golosinas", e:"🍫", img:P+"naranja-choco.jpg" },
+  { n:"Marshmallows", c:"golosinas", e:"🍡", img:P+"marshmallows.jpg" },
+  { n:"Rocklets", c:"golosinas", e:"🍫", img:P+"rocklets.jpg" },
+  { n:"Gomitas ácidas de limón", c:"golosinas", e:"🍬", img:P+"gomitas-acidas-limon.jpg" },
+  { n:"Frugele", c:"golosinas", e:"🍬", img:P+"frugele.jpg" },
+
+  // Despensa natural
+  { n:"Agua de coco con pulpa", c:"despensa", e:"🥥", img:P+"agua-coco-pulpa.jpg" },
+  { n:"Agua de coco Copra", c:"despensa", e:"🥥", img:P+"agua-coco-copra.jpg" },
+  { n:"Azúcar de coco", c:"despensa", e:"🟤", img:P+"azucar-coco.jpg" },
+  { n:"Café de cebada", c:"despensa", e:"☕", img:P+"cafe-cebada.jpg" },
+  { n:"Café de higo", c:"despensa", e:"☕", img:P+"cafe-higo.jpg" },
+  { n:"Café de quinoa", c:"despensa", e:"☕", img:P+"cafe-quinoa.jpg" },
+  { n:"Café de trigo", c:"despensa", e:"☕", img:P+"cafe-trigo.jpg" },
+  { n:"Harina de almendra con piel", c:"despensa", e:"🌾", img:P+"harina-almendra.jpg" },
+  { n:"Chuño", c:"despensa", e:"🥔", img:P+"chuno.jpg" },
+  { n:"Gelatina sin sabor", c:"despensa", e:"🍮", img:P+"gelatina-sin-sabor.jpg" },
+  { n:"Syrup de coco y chocolate", c:"despensa", e:"🍯", img:P+"syrup-coco-choco.jpg" },
+  { n:"Tropical coco", c:"despensa", e:"🥥", img:P+"tropical-coco.jpg" },
+
+  // Condimentos y especias
+  { n:"Ajinomoto", c:"condimentos", e:"🧂", img:P+"ajinomoto.jpg" },
+  { n:"Ajo en polvo", c:"condimentos", e:"🧄", img:P+"ajo-polvo.jpg" },
+  { n:"Anís estrella", c:"condimentos", e:"⭐", img:P+"anis-estrella.jpg" },
+  { n:"Canela molida", c:"condimentos", e:"🟤", img:P+"canela-molida.jpg" },
+  { n:"Cassia (canela en rama)", c:"condimentos", e:"🟤", img:P+"cassia.jpg" },
+  { n:"Cebolla en escama", c:"condimentos", e:"🧅", img:P+"cebolla-escama.jpg" },
+  { n:"Comino en polvo", c:"condimentos", e:"🟤", img:P+"comino-polvo.jpg" },
+  { n:"Comino entero", c:"condimentos", e:"🟤", img:P+"comino-entero.jpg" },
+  { n:"Cúrcuma en polvo", c:"condimentos", e:"🟡", img:P+"curcuma.jpg" },
+  { n:"Curry", c:"condimentos", e:"🟡", img:P+"curry.jpg" },
+  { n:"Hoja de eneldo", c:"condimentos", e:"🌿", img:P+"eneldo.jpg" },
+  { n:"Jengibre en polvo", c:"condimentos", e:"🟡", img:P+"jengibre-polvo.jpg" },
+  { n:"Orégano", c:"condimentos", e:"🌿", img:P+"oregano.jpg" },
+  { n:"Pimienta negra entera", c:"condimentos", e:"⚫", img:P+"pimienta-negra.jpg" },
+  { n:"Pimienta molida", c:"condimentos", e:"⚫", img:P+"pimienta-molida.jpg" },
+  { n:"Romero", c:"condimentos", e:"🌿", img:P+"romero.jpg" },
+  { n:"Sal de Himalaya fina", c:"condimentos", e:"🧂", img:P+"sal-himalaya-fina.jpg" },
+  { n:"Sal de Himalaya intermedia", c:"condimentos", e:"🧂", img:P+"sal-himalaya-intermedia.jpg" },
+  { n:"Sal de Himalaya gruesa", c:"condimentos", e:"🧂", img:P+"sal-himalaya-gruesa.jpg" },
+  { n:"Semilla de anís", c:"condimentos", e:"🌱", img:P+"semilla-anis.jpg" },
+  { n:"Tomillo", c:"condimentos", e:"🌿", img:P+"tomillo.jpg" },
 ];
 
 const CATEGORIES = [
@@ -149,6 +218,7 @@ const CATEGORIES = [
   { id:"snacks",       label:"Snacks salados" },
   { id:"golosinas",    label:"Golosinas & confites" },
   { id:"despensa",     label:"Despensa natural" },
+  { id:"condimentos",  label:"Condimentos & especias" },
 ];
 
 const CAT_LABEL = Object.fromEntries(CATEGORIES.map(c => [c.id, c.label]));
