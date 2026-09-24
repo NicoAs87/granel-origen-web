@@ -50,6 +50,7 @@ const PRODUCTS = [
   { n:"Pistacho salado", c:"frutos-secos", e:"🥜", img:P+"pistacho-salado.jpg" },
   { n:"Pistacho sin sal", c:"frutos-secos", e:"🥜", img:P+"pistacho-sin-sal.jpg" },
   { n:"Garbanzo tostado", c:"frutos-secos", e:"🟤", img:P+"garbanzo-tostado.jpg" },
+  { n:"Almendra laminada", c:"frutos-secos", e:"🌰", img:P+"almendra-laminada.jpg" },
 
   // Frutas deshidratadas
   { n:"Cranberry", c:"frutas", e:"🔴", img:P+"cranberry.jpg" },
@@ -191,6 +192,7 @@ const PRODUCTS = [
   { n:"Harina de maqui", c:"despensa", e:"🟣", img:P+"harina-maqui.jpg" },
   { n:"Harina de linaza", c:"despensa", e:"🟤", img:P+"harina-linaza.jpg" },
   { n:"Harina de coco", c:"despensa", e:"🥥", img:P+"harina-coco.jpg" },
+  { n:"Carne vegetal", c:"despensa", e:"🌱", img:P+"carne-vegetal.jpg" },
 
   // Condimentos y especias
   { n:"Ajinomoto", c:"condimentos", e:"🧂", img:P+"ajinomoto.jpg" },
@@ -214,6 +216,12 @@ const PRODUCTS = [
   { n:"Sal de Himalaya gruesa", c:"condimentos", e:"🧂", img:P+"sal-himalaya-gruesa.jpg" },
   { n:"Semilla de anís", c:"condimentos", e:"🌱", img:P+"semilla-anis.jpg" },
   { n:"Tomillo", c:"condimentos", e:"🌿", img:P+"tomillo.jpg" },
+  { n:"Paprika", c:"condimentos", e:"🌶️", img:P+"paprika.jpg" },
+  { n:"Nuez moscada entera", c:"condimentos", e:"🟤", img:P+"nuez-moscada.jpg" },
+  { n:"Merkén ahumado", c:"condimentos", e:"🌶️", img:P+"merken-ahumado.jpg" },
+  { n:"Cebolla en polvo", c:"condimentos", e:"🧅", img:P+"cebolla-polvo.jpg" },
+  { n:"Ajo en escama", c:"condimentos", e:"🧄", img:P+"ajo-escama.jpg" },
+  { n:"Aliño completo", c:"condimentos", e:"🧂", img:P+"alino-completo.jpg" },
 ];
 
 const CATEGORIES = [
