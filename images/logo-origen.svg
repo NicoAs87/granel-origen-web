@@ -1,4 +1,4 @@
-<svg viewBox="0 0 260 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Granel &amp; Origen — selección de origen">
+<svg viewBox="0 0 260 312" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Granel &amp; Origen — selección de origen">
   <defs>
     <linearGradient id="cara" x1="0" y1="0" x2="1" y2="1">
       <stop offset="0" stop-color="#c68d52"/>
@@ -33,6 +33,6 @@
   <circle class="grain" cx="130" cy="180" r="6"/>
 
   <!-- Wordmark -->
-  <text x="130" y="272" text-anchor="middle" font-family="'Cormorant Garamond', Georgia, serif" font-size="30" font-weight="700" fill="#3d2b1e" letter-spacing="1">Granel &amp; Origen</text>
-  <text x="130" y="291" text-anchor="middle" font-family="Montserrat, Arial, sans-serif" font-size="9.5" font-weight="600" fill="#9c6a34" letter-spacing="3">NATURAL · DE ORIGEN</text>
+  <text x="130" y="284" text-anchor="middle" font-family="'Cormorant Garamond', Georgia, serif" font-size="30" font-weight="700" fill="#3d2b1e" letter-spacing="1">Granel &amp; Origen</text>
+  <text x="130" y="303" text-anchor="middle" font-family="Montserrat, Arial, sans-serif" font-size="9.5" font-weight="600" fill="#9c6a34" letter-spacing="3">NATURAL · DE ORIGEN</text>
 </svg>
