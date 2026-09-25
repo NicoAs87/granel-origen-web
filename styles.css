@@ -85,12 +85,17 @@ a{color:inherit;text-decoration:none}
 .hero__banner::after{content:"";position:absolute;inset:auto 0 0 0;height:230px;background:linear-gradient(to top,var(--cream) 0%,rgba(250,246,239,.92) 20%,rgba(250,246,239,.55) 52%,rgba(250,246,239,.22) 78%,rgba(250,246,239,0) 100%);pointer-events:none;z-index:2}
 /* Panel de marca (aparece si la foto no está disponible) */
 .hero__brand{display:none}
-/* Banner con árbol sin fondo */
-.hero__banner--tree{max-height:none;overflow:visible;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:.3rem;
-  padding:2.4rem 24px 1.4rem;
-  background:radial-gradient(760px 480px at 50% 32%,rgba(125,139,100,.16),transparent 70%),linear-gradient(180deg,#f6efe3,var(--cream))}
-.hero__banner--tree::after{display:none}
-.hero__banner--tree .hero__tree{width:min(340px,72vw);height:auto;object-fit:contain;display:block;filter:drop-shadow(0 12px 24px rgba(61,43,30,.20))}
+/* Banner con árbol sin fondo, sobre la foto difuminada */
+.hero__banner--tree{position:relative;overflow:hidden;max-height:none;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:.3rem;
+  padding:2.6rem 24px 1.6rem;
+  background:linear-gradient(180deg,#f6efe3,var(--cream))}
+.hero__banner--tree::before{content:"";position:absolute;inset:0;z-index:0;
+  background:url("images/logo-banner.jpg") center 42%/cover no-repeat;
+  filter:blur(9px) saturate(1.05);transform:scale(1.12);opacity:.42}
+.hero__banner--tree::after{content:"";position:absolute;inset:0;z-index:1;
+  background:linear-gradient(180deg,rgba(250,246,239,.35) 0%,rgba(250,246,239,.5) 55%,var(--cream) 100%)}
+.hero__banner--tree > *{position:relative;z-index:2}
+.hero__banner--tree .hero__tree{width:min(340px,72vw);height:auto;object-fit:contain;display:block;filter:drop-shadow(0 12px 24px rgba(61,43,30,.22))}
 .hero__banner--fallback{max-height:none;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:3.4rem 24px 3.8rem;
   background:radial-gradient(1200px 380px at 50% -10%,rgba(181,127,69,.18),transparent 60%),linear-gradient(180deg,#f6efe3,var(--cream))}
 .hero__banner--fallback::before{content:"";position:absolute;inset:0;opacity:.5;background-image:radial-gradient(circle at 12% 30%,rgba(125,139,100,.12) 0 2px,transparent 3px),radial-gradient(circle at 85% 65%,rgba(181,127,69,.12) 0 2px,transparent 3px);background-size:60px 60px}
