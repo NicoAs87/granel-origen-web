@@ -324,7 +324,7 @@ filters.addEventListener("click", e => {
 search.addEventListener("input", renderProducts);
 
 /* ===== Carrito: elementos ===== */
-const QTY_PRESETS = [100, 250, 500, 750, 1000, 1500, 2000];
+const QTY_PRESETS = [100, 250, 500, 1000, 3000, 5000];
 const DEFAULT_QTY = 250;
 
 const cartFab     = document.getElementById("cartFab");
