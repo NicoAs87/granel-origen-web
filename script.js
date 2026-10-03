@@ -131,10 +131,10 @@ const PRODUCTS = [
   { n:"Coco laminado", c:"despensa", e:"🥥", img:P+"coco-laminado.jpg" },
   { n:"Coco rallado fino", c:"despensa", e:"🥥", img:P+"coco-rallado-fino.jpg" },
   { n:"Coco rallado grueso", c:"despensa", e:"🥥", img:P+"coco-rallado-grueso.jpg" },
-  { n:"Aceite de almendras", c:"despensa", e:"🧴", img:P+"aceite-almendras.jpg" },
-  { n:"Aceite de coco", c:"despensa", e:"🧴", img:P+"aceite-coco.jpg" },
-  { n:"Aceite de coco sin sabor", c:"despensa", e:"🧴", img:P+"aceite-coco.jpg" },
-  { n:"Aceite de nuez", c:"despensa", e:"🧴", img:P+"aceite-nuez.jpg" },
+  { n:"Aceite de almendras", c:"despensa", e:"🧴", img:P+"aceite-almendras.jpg", u:true },
+  { n:"Aceite de coco", c:"despensa", e:"🧴", img:P+"aceite-coco.jpg", u:true },
+  { n:"Aceite de coco sin sabor", c:"despensa", e:"🧴", img:P+"aceite-coco.jpg", u:true },
+  { n:"Aceite de nuez", c:"despensa", e:"🧴", img:P+"aceite-nuez.jpg", u:true },
   { n:"Té Ceylán", c:"despensa", e:"🍵", img:P+"te-ceylan.jpg" },
   { n:"Té verde", c:"despensa", e:"🍵", img:P+"te-verde.jpg" },
   { n:"Bicarbonato", c:"despensa", e:"🧂", img:P+"bicarbonato.jpg" },
@@ -173,8 +173,8 @@ const PRODUCTS = [
   { n:"Frugele", c:"golosinas", e:"🍬", img:P+"frugele.jpg" },
 
   // Despensa natural
-  { n:"Agua de coco con pulpa", c:"despensa", e:"🥥", img:P+"agua-coco-pulpa.jpg" },
-  { n:"Agua de coco Copra", c:"despensa", e:"🥥", img:P+"agua-coco-copra.jpg" },
+  { n:"Agua de coco con pulpa", c:"despensa", e:"🥥", img:P+"agua-coco-pulpa.jpg", u:true },
+  { n:"Agua de coco Copra", c:"despensa", e:"🥥", img:P+"agua-coco-copra.jpg", u:true },
   { n:"Azúcar de coco", c:"despensa", e:"🟤", img:P+"azucar-coco.jpg" },
   { n:"Café de cebada", c:"despensa", e:"☕", img:P+"cafe-cebada.jpg" },
   { n:"Café de higo", c:"despensa", e:"☕", img:P+"cafe-higo.jpg" },
@@ -368,7 +368,7 @@ function toast(msg){
 /* ===== Carrito: mutaciones ===== */
 function addToCart(id){
   if(cart[id] == null){
-    cart[id] = DEFAULT_QTY;
+    cart[id] = PRODUCT_BY_ID[id].u ? "u" : DEFAULT_QTY;
     toast(`${PRODUCT_BY_ID[id].n} · agregado al pedido`);
   }
   afterCartChange();
@@ -434,14 +434,20 @@ function renderCart(){
     const media = p.img
       ? `<img class="cart-item__img" src="${p.img}" alt="" loading="lazy" />`
       : `<span class="cart-item__emoji">${p.e}</span>`;
-    const presets = QTY_PRESETS.includes(g) ? QTY_PRESETS : [g, ...QTY_PRESETS];
-    const options = presets.map(v => `<option value="${v}"${v === g ? " selected" : ""}>${fmtQty(v)}</option>`).join("");
+    let control;
+    if(p.u){
+      control = `<span class="cart-item__unit">Por unidad</span>`;
+    } else {
+      const presets = QTY_PRESETS.includes(g) ? QTY_PRESETS : [g, ...QTY_PRESETS];
+      const options = presets.map(v => `<option value="${v}"${v === g ? " selected" : ""}>${fmtQty(v)}</option>`).join("");
+      control = `<select class="cart-item__qty" aria-label="Cantidad de ${p.n}">${options}</select>`;
+    }
     return `
     <div class="cart-item" data-id="${p.id}">
       ${media}
       <div class="cart-item__info">
         <span class="cart-item__name">${p.n}</span>
-        <select class="cart-item__qty" aria-label="Cantidad de ${p.n}">${options}</select>
+        ${control}
       </div>
       <button class="cart-item__del" data-id="${p.id}" aria-label="Quitar ${p.n}" title="Quitar">
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 7h12M9 7V5h6v2M8 7l.8 12.1a1 1 0 0 0 1 .9h4.4a1 1 0 0 0 1-.9L16 7" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -475,7 +481,10 @@ function buildMessage(){
     const pa = PRODUCT_BY_ID[a], pb = PRODUCT_BY_ID[b];
     return (CAT_ORDER[pa.c] - CAT_ORDER[pb.c]) || norm(pa.n).localeCompare(norm(pb.n), "es");
   });
-  const lines = ids.map(id => `• ${PRODUCT_BY_ID[id].n} — ${fmtQty(cart[id])}`);
+  const lines = ids.map(id => {
+    const p = PRODUCT_BY_ID[id];
+    return p.u ? `• ${p.n}` : `• ${p.n} — ${fmtQty(cart[id])}`;
+  });
   let msg = "Hola Granel & Origen 🌰, quiero hacer este pedido:\n\n" + lines.join("\n");
   if(cartEnvase) msg += "\n\n♻️ Llevo mi envase (10% dcto)";
   const note = cartNote.trim();
