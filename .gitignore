@@ -1,0 +1,4 @@
+﻿# Archivos locales que no van al sitio
+*.docx
+*-PRINT.png
+.claude/
