@@ -224,6 +224,9 @@ const PRODUCTS = [
   { n:"Aliño completo", c:"condimentos", e:"🧂", img:P+"alino-completo.jpg" },
 ];
 
+// Id estable para cada producto (usado por el carrito)
+PRODUCTS.forEach((p, i) => { p.id = i; });
+
 const CATEGORIES = [
   { id:"todos",        label:"Todos" },
   { id:"confitados",   label:"Maní & confitados" },
@@ -245,6 +248,25 @@ const filters = document.getElementById("filters");
 const search  = document.getElementById("search");
 
 let activeCat = "todos";
+
+/* ===== Estado del carrito ===== */
+const WA_NUMBER = "56967216888";
+const CART_KEY  = "go_cart_v1";
+const PRODUCT_BY_ID = Object.fromEntries(PRODUCTS.map(p => [p.id, p]));
+
+// cart = { [id]: gramos }
+let cart = {};
+let cartNote = "";
+let cartEnvase = false;
+
+try {
+  const saved = JSON.parse(localStorage.getItem(CART_KEY) || "{}");
+  if (saved && typeof saved === "object") {
+    cart       = saved.cart && typeof saved.cart === "object" ? saved.cart : {};
+    cartNote   = typeof saved.note === "string" ? saved.note : "";
+    cartEnvase = !!saved.envase;
+  }
+} catch (e) { /* localStorage no disponible o corrupto: empezamos vacíos */ }
 
 // Normaliza (sin acentos, minúsculas) para búsqueda
 const norm = s => s.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "");
@@ -276,6 +298,7 @@ function renderProducts(){
     const media = p.img
       ? `<img class="p-card__img" src="${p.img}" alt="${p.n}" loading="lazy" />`
       : `<span class="p-card__emoji">${p.e}</span>`;
+    const inCart = cart[p.id] != null;
     return `
     <article class="p-card${p.img ? " p-card--photo" : ""}">
       ${media}
@@ -283,6 +306,9 @@ function renderProducts(){
         <span class="p-card__name">${p.n}</span>
         <span class="p-card__cat">${CAT_LABEL[p.c]}</span>
       </span>
+      <button class="p-card__add${inCart ? " is-in" : ""}" data-id="${p.id}" aria-label="${inCart ? "Quitar" : "Agregar"} ${p.n} ${inCart ? "del" : "al"} pedido" title="${inCart ? "En tu pedido" : "Agregar al pedido"}">
+        <span class="p-card__add-ico" aria-hidden="true">${inCart ? "✓" : "+"}</span>
+      </button>
     </article>`;
   }).join("");
 }
@@ -297,8 +323,210 @@ filters.addEventListener("click", e => {
 
 search.addEventListener("input", renderProducts);
 
+/* ===== Carrito: elementos ===== */
+const QTY_PRESETS = [100, 250, 500, 750, 1000, 1500, 2000];
+const DEFAULT_QTY = 250;
+
+const cartFab     = document.getElementById("cartFab");
+const cartCount   = document.getElementById("cartCount");
+const cartEl      = document.getElementById("cart");
+const cartOverlay = document.getElementById("cartOverlay");
+const cartClose   = document.getElementById("cartClose");
+const cartBody    = document.getElementById("cartBody");
+const cartEmpty   = document.getElementById("cartEmpty");
+const cartFoot    = document.getElementById("cartFoot");
+const cartSend    = document.getElementById("cartSend");
+const cartClear   = document.getElementById("cartClear");
+const cartEnvaseEl= document.getElementById("cartEnvase");
+const cartNoteEl  = document.getElementById("cartNote");
+const toastEl     = document.getElementById("toast");
+
+/* ===== Carrito: utilidades ===== */
+function fmtQty(g){
+  return g >= 1000
+    ? (g / 1000).toLocaleString("es-CL", { maximumFractionDigits: 2 }) + " kg"
+    : g + " g";
+}
+
+function cartCountValue(){ return Object.keys(cart).length; }
+
+function persistCart(){
+  try {
+    localStorage.setItem(CART_KEY, JSON.stringify({ cart, note: cartNote, envase: cartEnvase }));
+  } catch (e) { /* sin persistencia, el carrito sigue funcionando en memoria */ }
+}
+
+let toastTimer;
+function toast(msg){
+  if(!toastEl) return;
+  toastEl.textContent = msg;
+  toastEl.classList.add("is-visible");
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => toastEl.classList.remove("is-visible"), 1800);
+}
+
+/* ===== Carrito: mutaciones ===== */
+function addToCart(id){
+  if(cart[id] == null){
+    cart[id] = DEFAULT_QTY;
+    toast(`${PRODUCT_BY_ID[id].n} · agregado al pedido`);
+  }
+  afterCartChange();
+}
+function removeFromCart(id){
+  delete cart[id];
+  afterCartChange();
+}
+function setQty(id, g){
+  cart[id] = g;
+  afterCartChange();
+}
+function clearCart(){
+  cart = {};
+  afterCartChange();
+}
+
+function afterCartChange(){
+  persistCart();
+  updateFab();
+  updateCardButtons();
+  renderCart();
+}
+
+/* ===== Carrito: render ===== */
+function updateFab(){
+  const n = cartCountValue();
+  cartCount.textContent = n;
+  cartFab.classList.toggle("has-items", n > 0);
+  cartCount.hidden = n === 0;
+}
+
+function updateCardButtons(){
+  grid.querySelectorAll(".p-card__add").forEach(btn => {
+    const id = Number(btn.dataset.id);
+    const inCart = cart[id] != null;
+    btn.classList.toggle("is-in", inCart);
+    const ico = btn.querySelector(".p-card__add-ico");
+    if(ico) ico.textContent = inCart ? "✓" : "+";
+    const p = PRODUCT_BY_ID[id];
+    if(p){
+      btn.setAttribute("aria-label", `${inCart ? "Quitar" : "Agregar"} ${p.n} ${inCart ? "del" : "al"} pedido`);
+      btn.title = inCart ? "En tu pedido" : "Agregar al pedido";
+    }
+  });
+}
+
+function renderCart(){
+  const ids = Object.keys(cart);
+  const hasItems = ids.length > 0;
+  cartEmpty.hidden = hasItems;
+  cartFoot.hidden = !hasItems;
+
+  // Ordena por categoría y nombre, igual que el catálogo
+  ids.sort((a, b) => {
+    const pa = PRODUCT_BY_ID[a], pb = PRODUCT_BY_ID[b];
+    return (CAT_ORDER[pa.c] - CAT_ORDER[pb.c]) || norm(pa.n).localeCompare(norm(pb.n), "es");
+  });
+
+  cartBody.innerHTML = ids.map(id => {
+    const p = PRODUCT_BY_ID[id];
+    const g = cart[id];
+    const media = p.img
+      ? `<img class="cart-item__img" src="${p.img}" alt="" loading="lazy" />`
+      : `<span class="cart-item__emoji">${p.e}</span>`;
+    const presets = QTY_PRESETS.includes(g) ? QTY_PRESETS : [g, ...QTY_PRESETS];
+    const options = presets.map(v => `<option value="${v}"${v === g ? " selected" : ""}>${fmtQty(v)}</option>`).join("");
+    return `
+    <div class="cart-item" data-id="${p.id}">
+      ${media}
+      <div class="cart-item__info">
+        <span class="cart-item__name">${p.n}</span>
+        <select class="cart-item__qty" aria-label="Cantidad de ${p.n}">${options}</select>
+      </div>
+      <button class="cart-item__del" data-id="${p.id}" aria-label="Quitar ${p.n}" title="Quitar">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 7h12M9 7V5h6v2M8 7l.8 12.1a1 1 0 0 0 1 .9h4.4a1 1 0 0 0 1-.9L16 7" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+    </div>`;
+  }).join("");
+
+  cartEnvaseEl.checked = cartEnvase;
+  if(document.activeElement !== cartNoteEl) cartNoteEl.value = cartNote;
+}
+
+/* ===== Carrito: abrir / cerrar ===== */
+function openCart(){
+  cartEl.classList.add("is-open");
+  cartEl.setAttribute("aria-hidden", "false");
+  cartOverlay.hidden = false;
+  requestAnimationFrame(() => cartOverlay.classList.add("is-open"));
+  document.body.classList.add("no-scroll");
+}
+function closeCart(){
+  cartEl.classList.remove("is-open");
+  cartEl.setAttribute("aria-hidden", "true");
+  cartOverlay.classList.remove("is-open");
+  setTimeout(() => { cartOverlay.hidden = true; }, 250);
+  document.body.classList.remove("no-scroll");
+}
+
+/* ===== Carrito: enviar por WhatsApp ===== */
+function buildMessage(){
+  const ids = Object.keys(cart).sort((a, b) => {
+    const pa = PRODUCT_BY_ID[a], pb = PRODUCT_BY_ID[b];
+    return (CAT_ORDER[pa.c] - CAT_ORDER[pb.c]) || norm(pa.n).localeCompare(norm(pb.n), "es");
+  });
+  const lines = ids.map(id => `• ${PRODUCT_BY_ID[id].n} — ${fmtQty(cart[id])}`);
+  let msg = "Hola Granel & Origen 🌰, quiero hacer este pedido:\n\n" + lines.join("\n");
+  if(cartEnvase) msg += "\n\n♻️ Llevo mi envase (10% dcto)";
+  const note = cartNote.trim();
+  if(note) msg += `\n\nNotas: ${note}`;
+  return msg;
+}
+
+function sendOrder(){
+  if(cartCountValue() === 0) return;
+  const url = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(buildMessage())}`;
+  window.open(url, "_blank", "noopener");
+}
+
+/* ===== Carrito: eventos ===== */
+grid.addEventListener("click", e => {
+  const btn = e.target.closest(".p-card__add");
+  if(!btn) return;
+  const id = Number(btn.dataset.id);
+  if(cart[id] != null) removeFromCart(id);
+  else addToCart(id);
+});
+
+cartBody.addEventListener("click", e => {
+  const del = e.target.closest(".cart-item__del");
+  if(del) removeFromCart(Number(del.dataset.id));
+});
+cartBody.addEventListener("change", e => {
+  const sel = e.target.closest(".cart-item__qty");
+  if(sel){
+    const id = Number(e.target.closest(".cart-item").dataset.id);
+    setQty(id, Number(sel.value));
+  }
+});
+
+cartFab.addEventListener("click", openCart);
+cartClose.addEventListener("click", closeCart);
+cartOverlay.addEventListener("click", closeCart);
+document.addEventListener("keydown", e => { if(e.key === "Escape" && cartEl.classList.contains("is-open")) closeCart(); });
+
+cartEnvaseEl.addEventListener("change", () => { cartEnvase = cartEnvaseEl.checked; persistCart(); });
+cartNoteEl.addEventListener("input", () => { cartNote = cartNoteEl.value; persistCart(); });
+cartSend.addEventListener("click", sendOrder);
+cartClear.addEventListener("click", () => {
+  if(cartCountValue() === 0) return;
+  if(confirm("¿Vaciar todo el pedido?")) clearCart();
+});
+
 renderFilters();
 renderProducts();
+updateFab();
+renderCart();
 
 /* ===== Menú móvil ===== */
 const toggle = document.getElementById("navToggle");
