@@ -222,6 +222,84 @@ const PRODUCTS = [
   { n:"Cebolla en polvo", c:"condimentos", e:"🧅", img:P+"cebolla-polvo.jpg" },
   { n:"Ajo en escama", c:"condimentos", e:"🧄", img:P+"ajo-escama.jpg" },
   { n:"Aliño completo", c:"condimentos", e:"🧂", img:P+"alino-completo.jpg" },
+
+  // ===== Agregados desde lista mayorista 2026 (foto pendiente, por ahora emoji) =====
+  // Aceites y aguas (por unidad)
+  { n:"Aceite de coco 200 ml", c:"despensa", e:"🧴", u:true },
+  { n:"Aceite de coco 500 ml", c:"despensa", e:"🧴", u:true },
+  { n:"Aceite de coco 1 L", c:"despensa", e:"🧴", u:true },
+  { n:"Aceite de coco sin sabor 200 ml", c:"despensa", e:"🧴", u:true },
+  { n:"Aceite de coco sin sabor 500 ml", c:"despensa", e:"🧴", u:true },
+  { n:"Aceite de coco spray sin sabor 100 ml", c:"despensa", e:"🧴", u:true },
+  { n:"Agua de coco Copra 1 L", c:"despensa", e:"🥥", u:true },
+  // Golosinas / chocolates
+  { n:"Chips de chocolate", c:"golosinas", e:"🍫" },
+  { n:"Cholito", c:"golosinas", e:"🔴" },
+  { n:"Cholito blanco", c:"golosinas", e:"⚪" },
+  { n:"Cholito mix", c:"golosinas", e:"🎉" },
+  { n:"Cranberry con chocolate", c:"golosinas", e:"🍫" },
+  { n:"Mango con chocolate", c:"golosinas", e:"🍫" },
+  { n:"Maní choco rols", c:"golosinas", e:"🍫" },
+  { n:"Pasas al ron con chocolate", c:"golosinas", e:"🍫" },
+  { n:"Piña con chocolate", c:"golosinas", e:"🍫" },
+  { n:"Pasas con chocolate", c:"golosinas", e:"🍫" },
+  // Maní confitado (sabores nuevos)
+  { n:"Maní sabor cereza sour", c:"confitados", e:"🍒" },
+  { n:"Maní sabor miel", c:"confitados", e:"🍯" },
+  { n:"Maní sabor Nutella", c:"confitados", e:"🍫" },
+  { n:"Maní sabor papaya", c:"confitados", e:"🟠" },
+  { n:"Maní sabor plátano", c:"confitados", e:"🍌" },
+  { n:"Maravilla confitada", c:"confitados", e:"🌻" },
+  { n:"Maravilla confitada menta", c:"confitados", e:"🌿" },
+  // Pastas y cremas untables (por unidad)
+  { n:"Crema de avellana tipo Nutella 350 g", c:"despensa", e:"🍫", u:true },
+  { n:"Crema de pistacho 200 g", c:"despensa", e:"🟢", u:true },
+  { n:"Pasta de castaña de cajú con cacao 200 g", c:"despensa", e:"🥜", u:true },
+  { n:"Pasta de castaña de cajú entera 200 g", c:"despensa", e:"🥜", u:true },
+  { n:"Pasta de castaña de cajú con coco 200 g", c:"despensa", e:"🥥", u:true },
+  { n:"Pasta de maní 500 g", c:"despensa", e:"🥜", u:true },
+  { n:"Pasta de maní crunchy 500 g", c:"despensa", e:"🥜", u:true },
+  // Crocantes con chocolate
+  { n:"Crocante de castaña con chocolate", c:"golosinas", e:"🍫" },
+  { n:"Crocante de maní con chocolate", c:"golosinas", e:"🍫" },
+  // Dulces
+  { n:"Gomita tiburón con chocolate", c:"golosinas", e:"🦈" },
+  { n:"Snicker", c:"golosinas", e:"🍫", u:true },
+  { n:"Azúcar de coco 350 g", c:"despensa", e:"🟤", u:true },
+  { n:"Glucosa", c:"despensa", e:"🍯" },
+  // Frutas deshidratadas
+  { n:"Banana liofilizada", c:"frutas", e:"🍌" },
+  { n:"Dátil sin carozo", c:"frutas", e:"🟤" },
+  { n:"Frutilla liofilizada", c:"frutas", e:"🍓" },
+  { n:"Higo deshidratado", c:"frutas", e:"🟣" },
+  { n:"Mix de frutas deshidratadas", c:"frutas", e:"🍍" },
+  { n:"Manzana rodaja", c:"frutas", e:"🍎" },
+  { n:"Pasas ámbar", c:"frutas", e:"🍇" },
+  { n:"Pasas golden", c:"frutas", e:"🍇" },
+  { n:"Pasas rubias", c:"frutas", e:"🍇" },
+  // Frutos secos
+  { n:"Almendra grande", c:"frutos-secos", e:"🌰" },
+  { n:"Almendra mediana", c:"frutos-secos", e:"🌰" },
+  { n:"Almendra pequeña", c:"frutos-secos", e:"🌰" },
+  { n:"Coco cubo", c:"frutos-secos", e:"🥥" },
+  { n:"Nuez amarilla", c:"frutos-secos", e:"🌰" },
+  { n:"Nuez cuarto", c:"frutos-secos", e:"🌰" },
+  { n:"Nuez máquina", c:"frutos-secos", e:"🌰" },
+  // Snacks (por unidad)
+  { n:"Chips de camote", c:"snacks", e:"🍠", u:true },
+  { n:"Chips de yuca", c:"snacks", e:"🥔", u:true },
+  // Infusiones
+  { n:"Flor de manzanilla", c:"despensa", e:"🌼" },
+  { n:"Té Chai", c:"despensa", e:"🍵" },
+  // Cereales
+  { n:"Arroz Basmati", c:"semillas", e:"🌾" },
+  { n:"Granola tradicional premium", c:"semillas", e:"🥣" },
+  { n:"Quínoa roja", c:"semillas", e:"🌾" },
+  // Condimentos
+  { n:"Canela Ceylán en rama", c:"condimentos", e:"🟤" },
+  { n:"Canela molida Ceylán", c:"condimentos", e:"🟤" },
+  { n:"Clavo de olor entero", c:"condimentos", e:"🟤" },
+  { n:"Clavo de olor molido", c:"condimentos", e:"🟤" },
 ];
 
 // Id estable para cada producto (usado por el carrito)
