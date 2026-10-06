@@ -623,3 +623,51 @@ links.addEventListener("click", e => {
 
 /* ===== Año ===== */
 document.getElementById("year").textContent = new Date().getFullYear();
+
+/* ===== Formulario precios mayoristas (FormSubmit) ===== */
+const mayoristaForm = document.getElementById("mayoristaForm");
+if(mayoristaForm){
+  const wmsg = document.getElementById("wformMsg");
+  const WA = "https://wa.me/56967216888";
+  mayoristaForm.addEventListener("submit", async e => {
+    e.preventDefault();
+    const nombre = mayoristaForm.nombre.value.trim();
+    const email  = mayoristaForm.email.value.trim();
+    wmsg.hidden = true;
+    wmsg.classList.remove("is-ok", "is-err");
+    if(!nombre || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){
+      wmsg.textContent = "Escribe tu nombre y un correo válido.";
+      wmsg.classList.add("is-err"); wmsg.hidden = false;
+      return;
+    }
+    const btn = mayoristaForm.querySelector(".wform__submit");
+    const label = btn.textContent;
+    btn.disabled = true; btn.textContent = "Enviando…";
+    const payload = {
+      nombre,
+      negocio:  mayoristaForm.negocio.value.trim(),
+      telefono: mayoristaForm.telefono.value.trim(),
+      email,
+      _subject: "Solicitud de precios mayoristas — Granel & Origen",
+      _template: "table",
+      _captcha: "false",
+      _autoresponse: "¡Gracias por tu interés en Granel & Origen! Recibimos tu solicitud de precios mayoristas (sobre 10 kg). En breve te enviaremos la lista de precios a este correo. Cualquier consulta: WhatsApp +56 9 6721 6888."
+    };
+    try{
+      const res = await fetch("https://formsubmit.co/ajax/granelyorigen@gmail.com", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", "Accept": "application/json" },
+        body: JSON.stringify(payload)
+      });
+      if(!res.ok) throw new Error("http " + res.status);
+      mayoristaForm.reset();
+      wmsg.textContent = "¡Gracias! Te enviaremos la lista de precios mayoristas a tu correo 📩";
+      wmsg.classList.add("is-ok"); wmsg.hidden = false;
+    } catch(err){
+      wmsg.innerHTML = 'No pudimos enviar el formulario. Escríbenos por WhatsApp: <a href="' + WA + '" target="_blank" rel="noopener">+56 9 6721 6888</a>';
+      wmsg.classList.add("is-err"); wmsg.hidden = false;
+    } finally {
+      btn.disabled = false; btn.textContent = label;
+    }
+  });
+}
