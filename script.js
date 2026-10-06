@@ -256,7 +256,6 @@ const PRODUCTS = [
   { n:"Crema de pistacho 200 g", c:"despensa", e:"🟢", u:true },
   { n:"Pasta de castaña de cajú con cacao 200 g", c:"despensa", e:"🥜", u:true },
   { n:"Pasta de castaña de cajú entera 200 g", c:"despensa", e:"🥜", u:true },
-  { n:"Pasta de castaña de cajú con coco 200 g", c:"despensa", e:"🥥", u:true },
   { n:"Pasta de maní 500 g", c:"despensa", e:"🥜", u:true },
   { n:"Pasta de maní crunchy 500 g", c:"despensa", e:"🥜", u:true },
   // Crocantes con chocolate
@@ -284,7 +283,6 @@ const PRODUCTS = [
   { n:"Coco cubo", c:"frutos-secos", e:"🥥", img:P+"coco-cubo.jpg" },
   { n:"Nuez amarilla", c:"frutos-secos", e:"🌰", img:P+"nuez-amarilla.jpg" },
   { n:"Nuez cuarto", c:"frutos-secos", e:"🌰", img:P+"nuez-cuarto.jpg" },
-  { n:"Nuez máquina", c:"frutos-secos", e:"🌰" },
   // Snacks (por unidad)
   { n:"Chips de camote", c:"snacks", e:"🍠", u:true, img:P+"chips-de-camote.jpg" },
   { n:"Chips de yuca", c:"snacks", e:"🥔", u:true, img:P+"chips-de-yuca.jpg" },
