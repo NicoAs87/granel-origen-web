@@ -402,6 +402,11 @@ function renderProducts(){
     const priceHtml = p.ag
       ? `<span class="p-card__price p-card__price--out">Agotado</span>`
       : `<span class="p-card__price">${fmtCLP(p.p)}<span class="p-card__unit"> ${p.u ? "c/u" : "/kg"}</span></span>`;
+    // Precios por formato (solo a granel): 100 g, 250 g, 500 g
+    const formatsHtml = (!p.ag && !p.u)
+      ? `<span class="p-card__formats">${[100, 250, 500].map(g =>
+          `<span class="p-card__fmt"><b>${g} g</b> ${fmtCLP(p.p * g / 1000)}</span>`).join("")}</span>`
+      : "";
     const btn = p.ag
       ? `<button class="p-card__add is-out" disabled aria-label="${p.n} agotado" title="Agotado">
         <span class="p-card__add-ico" aria-hidden="true">—</span>
@@ -416,6 +421,7 @@ function renderProducts(){
         <span class="p-card__name">${p.n}</span>
         <span class="p-card__cat">${CAT_LABEL[p.c]}</span>
         ${priceHtml}
+        ${formatsHtml}
       </span>
       ${btn}
     </article>`;
